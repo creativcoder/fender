@@ -1,0 +1,12 @@
+#! /bin/bash
+
+set -e
+
+if [ $# -eq 0 ]
+  then
+    echo "Please provide a bike url and the bike type (this will be used as a folder)"
+    exit
+fi
+
+geckodriver &
+cargo run -- $1 $2
