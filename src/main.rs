@@ -47,11 +47,11 @@ async fn crawl_by_type(url: &str, c: &mut Client, category: &str) -> Result<(), 
     // item is each bike on the list of bikes shown on aerod_url
     for item in doc.find(Attr("class", "productTile__link")) {
         // For each bike on this list we have certain properties on attrs method
-        let bike_name = item.attrs().find(|(a, b)| {
+        let bike_name = item.attrs().find(|(a, _)| {
             *a == "title"
         }).unwrap().1.replace(" ", "_").to_lowercase();
 
-        let bike_url = item.attrs().find(|(a, b)| {
+        let bike_url = item.attrs().find(|(a, _)| {
             *a == "href"
         }).unwrap().1;
 
@@ -140,7 +140,7 @@ async fn crawl_specific_bike(bike_brand_url: &str, brand: &str) -> Result<(), fa
     // item is each bike on the list of bikes shown on aerod_url
     for item in doc.find(Attr("class", "productTile__link")) {
         // For each bike on this list we have certain properties on attrs method
-        let bike_name = item.attrs().find(|(a, b)| {
+        let bike_name = item.attrs().find(|(a, _)| {
             *a == "title"
         }).unwrap().1.replace(" ", "_").to_lowercase();
 
@@ -171,10 +171,6 @@ async fn main() -> Result<(), fantoccini::error::CmdError> {
         stop_geckodriver();
     }).expect("Failed handling Ctrl+C");
 
-    let _ = Command::new("geckodriver")
-            .args(&["&"])
-            .output()
-            .expect("failed to execute process");
     let args: cli::FenderArgs = argh::from_env();
     let specific_bike_url = args.bike_url;
     let bike_type = args.bike_type;
