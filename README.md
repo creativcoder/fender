@@ -13,3 +13,5 @@ to aid in a data driven bike project.
 ## Running
 
 `./scrape <bike_list_url_from_canyon.in site> <folder_to_save_to>` - To start running geckodriver along with `fender` binary
+
+For example: `./scrape https://www.canyon.com/en-in/all-road-bikes/ road-bikes ~/geometry_data`

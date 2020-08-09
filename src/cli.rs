@@ -8,5 +8,8 @@ pub struct FenderArgs {
     pub bike_url: String,
     /// the type of bike, e.g., aeroad, roadlite
     #[argh(positional, short = 't')]
-    pub bike_type: String
+    pub bike_type: String,
+    /// the output folder
+    #[argh(positional, short = 'o')]
+    pub output: String,
 }
